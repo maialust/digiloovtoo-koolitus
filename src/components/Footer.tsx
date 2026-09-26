@@ -28,7 +28,18 @@ export function Footer() {
 
         <div>
           <h2 className="text-sm font-bold tracking-wider text-navy-900 uppercase">Korraldaja</h2>
-          <p className="mt-3 font-semibold text-ink">{course.organizer}</p>
+          {/* Tallinna Ülikooli logo; failil on valged ääred, kast näitab ainult logo osa. */}
+          <span className="mt-4 block aspect-[680/147] h-12 overflow-hidden">
+            <img
+              src={`${import.meta.env.BASE_URL}TLU-logo-pilt-vrv-suur.jpg`}
+              alt={course.organizer}
+              width={840}
+              height={323}
+              loading="lazy"
+              className="block h-auto max-w-none mix-blend-multiply"
+              style={{ width: "123.53%", marginLeft: "-11.76%", marginTop: "-11.91%" }}
+            />
+          </span>
           {contact.name && <p className="mt-1 text-muted">{contact.name}</p>}
           {hasContact && (
             <ul className="mt-3 space-y-2 text-muted">

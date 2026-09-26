@@ -14,7 +14,7 @@
  * registreerimisnupud lehe registreerimisplokki (mitte olematule
  * aadressile) ja avalikul lehel seda sõna ei kuvata.
  * ------------------------------------------------------------------- */
-export const REGISTRATION_URL = "https://www.tlu.ee/sites/default/files/TUKO/%C3%9Clikoolo%20logo/TLU-logo-pilt-vrv-suur.jpg";
+export const REGISTRATION_URL = "https://haridusportaal.edu.ee/koolitused-juhan/koolitus/019fcbff-3de8-75c9-a122-21a629c23edc";;
 
 /* ---------------------------------------------------------------------
  * 2. LEHE AVALIK AADRESS (SEO ja jagamise eelvaate jaoks)

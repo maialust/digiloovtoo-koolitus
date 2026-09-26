@@ -14,7 +14,7 @@
  * registreerimisnupud lehe registreerimisplokki (mitte olematule
  * aadressile) ja avalikul lehel seda sõna ei kuvata.
  * ------------------------------------------------------------------- */
-export const REGISTRATION_URL = "https://haridusportaal.edu.ee/koolitused-juhan/koolitus/019fcbff-3de8-75c9-a122-21a629c23edc";;
+export const REGISTRATION_URL = "https://haridusportaal.edu.ee/koolitused-juhan/koolitus/019fcbff-3de8-75c9-a122-21a629c23edc";
 
 /* ---------------------------------------------------------------------
  * 2. LEHE AVALIK AADRESS (SEO ja jagamise eelvaate jaoks)
@@ -80,22 +80,39 @@ export const course = {
 export type Group = { label: string; period: string; note?: string };
 
 export const groups: Group[] = [
-  { label: "I grupp", period: "august–september 2026" },
-  { label: "II grupp", period: "märts–aprill 2027" },
+  {
+    label: "Järgmine grupp",
+    period: "jaanuar 2027",
+    note: "Algus jaanuari keskel, täpsed kuupäevad on täpsustamisel.",
+  },
 ];
 
 /* ---------------------------------------------------------------------
  * KOOLITAJAD
- * `bio` — lühitutvustus (1–3 lauset). Tühjaks jäetuna ei kuvata midagi.
- * `photo` — pildifaili nimi kaustas public/koolitajad/,
- *           nt "maia-lust.jpg". Tühjaks jäetuna kuvatakse initsiaalid.
- * `role`  — nt ametikoht. Lisa ainult kinnitatud info.
+ * `role`    — ametikoht (ainult kinnitatud info, nt ETIS-est).
+ * `bio`     — lühitutvustus (1–3 lauset). Tühjaks jäetuna ei kuvata.
+ * `photo`   — pildifaili nimi kaustas public/, nt "maia-lust.jpg".
+ *             Tühjaks jäetuna kuvatakse neutraalne ikoon.
+ * `profile` — link ETIS-e profiilile. Tühjaks jäetuna ei kuvata.
+ * Allikas: ETIS (www.etis.ee), vaadatud 26.09.2026.
  * ------------------------------------------------------------------- */
-export type Trainer = { name: string; role: string; bio: string; photo: string };
+export type Trainer = { name: string; role: string; bio: string; photo: string; profile: string };
 
 export const trainers: Trainer[] = [
-  { name: "Maia Lust", role: "Koolitaja", bio: "", photo: "" },
-  { name: "Mart Laanpere", role: "Koolitaja", bio: "", photo: "" },
+  {
+    name: "Maia Lust",
+    role: "Haridustehnoloog, Tallinna Pae Gümnaasium · doktorant, Tallinna Ülikool",
+    bio: "Uurib digitaalset kirjaoskust ja tehnoloogia kasutamist hariduses, sealhulgas digiloovtööde platvormi ja õpilaste toetamist arvutirikastatud õpikeskkonnas. Digiõpiku „Digiloovtöö“ autor.",
+    photo: "Maia pilt.png",
+    profile: "https://www.etis.ee/CV/Maia_Lust/est",
+  },
+  {
+    name: "Mart Laanpere",
+    role: "Matemaatika ja informaatika didaktika professor, Tallinna Ülikooli digitehnoloogiate instituut",
+    bio: "",
+    photo: "",
+    profile: "https://www.etis.ee/CV/Mart_Laanpere/est",
+  },
 ];
 
 /* ---------------------------------------------------------------------
@@ -474,7 +491,7 @@ export const faq: { q: string; a: string }[] = [
   },
   {
     q: "Millal järgmised grupid alustavad?",
-    a: "Grupid on kavandatud perioodidele august–september 2026 ja märts–aprill 2027. Kontaktpäevade täpsed kuupäevad avaldatakse enne registreerimise algust.",
+    a: "Järgmine grupp alustab 2027. aasta jaanuari keskel, täpsed kuupäevad on täpsustamisel. Kontaktpäevade kuupäevad avaldatakse enne registreerimise algust.",
   },
 ];
 

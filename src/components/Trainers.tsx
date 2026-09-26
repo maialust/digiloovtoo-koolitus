@@ -1,4 +1,4 @@
-import { GraduationCap } from "lucide-react";
+import { ArrowUpRight, GraduationCap } from "lucide-react";
 import { trainers } from "../data/course";
 import { SectionHeading } from "./SectionHeading";
 
@@ -23,17 +23,17 @@ export function Trainers() {
           {trainers.map((t, i) => (
             <li
               key={t.name}
-              className="reveal card flex flex-col gap-6 p-7 sm:flex-row sm:items-center"
+              className="reveal card flex flex-col gap-6 p-7 sm:flex-row sm:items-start"
               style={{ ["--delay" as string]: `${i * 100}ms` }}
             >
               {t.photo ? (
                 <img
-                  src={`${import.meta.env.BASE_URL}koolitajad/${t.photo}`}
+                  src={`${import.meta.env.BASE_URL}${encodeURIComponent(t.photo)}`}
                   alt={`Koolitaja ${t.name}`}
                   width={112}
                   height={112}
                   loading="lazy"
-                  className="size-28 shrink-0 rounded-3xl object-cover"
+                  className="size-28 shrink-0 rounded-3xl bg-white object-cover ring-1 ring-line"
                 />
               ) : (
                 <span
@@ -45,8 +45,20 @@ export function Trainers() {
               )}
               <div>
                 <h3 className="text-2xl font-extrabold tracking-tight text-navy-900">{t.name}</h3>
-                {t.role && <p className="mt-1 font-semibold text-teal-700">{t.role}</p>}
+                {t.role && <p className="mt-1 leading-snug font-semibold text-teal-700">{t.role}</p>}
                 {t.bio && <p className="mt-3 leading-relaxed text-muted">{t.bio}</p>}
+                {t.profile && (
+                  <a
+                    href={t.profile}
+                    target="_blank"
+                    rel="noopener"
+                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-violet-700 underline-offset-4 hover:text-navy-900 hover:underline"
+                  >
+                    ETIS-e profiil
+                    <ArrowUpRight className="size-4" aria-hidden="true" />
+                    <span className="sr-only"> — {t.name} (avaneb uues aknas)</span>
+                  </a>
+                )}
               </div>
             </li>
           ))}

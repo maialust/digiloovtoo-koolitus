@@ -110,7 +110,7 @@ export const trainers: Trainer[] = [
     name: "Mart Laanpere",
     role: "Matemaatika ja informaatika didaktika professor, Tallinna Ülikooli digitehnoloogiate instituut",
     bio: "",
-    photo: "",
+    photo: "mart-laanpere.jpg",
     profile: "https://www.etis.ee/CV/Mart_Laanpere/est",
   },
 ];

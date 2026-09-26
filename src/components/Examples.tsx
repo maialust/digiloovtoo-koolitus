@@ -1,4 +1,6 @@
+import { useRef } from "react";
 import { ArrowUpRight, ChevronRight } from "lucide-react";
+import { useStepCycle } from "./useStepCycle";
 import { digiloovtooIntro, exampleBook, examples } from "../data/course";
 import { Icon } from "./Icon";
 import { SectionHeading } from "./SectionHeading";
@@ -13,8 +15,12 @@ const tones = [
 const flow = ["Sihtrühm ja vajadused", "Persoonad", "Paberprototüüp", "Interaktiivne prototüüp", "Esitlus"];
 
 export function Examples() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const cards = useStepCycle(examples.length, sectionRef, 1800);
+  const steps = useStepCycle(flow.length, sectionRef, 1400);
+
   return (
-    <section id="naited" aria-labelledby="naited-title" className="py-20 sm:py-28">
+    <section id="naited" ref={sectionRef} aria-labelledby="naited-title" className="py-20 sm:py-28">
       <div className="container-page">
         <SectionHeading
           id="naited-title"
@@ -33,7 +39,15 @@ export function Examples() {
           <ol className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center" aria-label="Digiloovtöö etapid">
             {flow.map((step, i) => (
               <li key={step} className="flex items-center gap-2">
-                <span className="inline-flex items-center gap-2 rounded-full bg-paper px-3.5 py-2 text-sm font-bold text-navy-900 ring-1 ring-line">
+                <span
+                  className={`inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-sm font-bold text-navy-900 transition-all duration-500 ${
+                    i === steps.active
+                      ? "scale-105 bg-sun-300 shadow-soft ring-2 ring-sun-400"
+                      : i < steps.active
+                        ? "bg-sun-50 ring-1 ring-sun-300"
+                        : "bg-paper ring-1 ring-line"
+                  }`}
+                >
                   <span className="grid size-5 place-items-center rounded-full bg-navy-900 text-[0.7rem] text-white" aria-hidden="true">
                     {i + 1}
                   </span>
@@ -50,21 +64,44 @@ export function Examples() {
         <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {examples.map((ex, i) => {
             const t = tones[i % tones.length];
+            const on = i === cards.active;
             return (
-              <li key={ex.title} className="reveal" style={{ ["--delay" as string]: `${(i % 4) * 70}ms` }}>
+              <li
+                key={ex.title}
+                className="reveal"
+                style={{ ["--delay" as string]: `${(i % 4) * 70}ms` }}
+                onMouseEnter={() => {
+                  cards.setActive(i);
+                  cards.setPaused(true);
+                }}
+                onMouseLeave={() => cards.setPaused(false)}
+                onFocus={() => {
+                  cards.setActive(i);
+                  cards.setPaused(true);
+                }}
+                onBlur={() => cards.setPaused(false)}
+              >
                 <a
                   href={ex.url}
                   target="_blank"
                   rel="noopener"
-                  className="group card relative flex h-full flex-col overflow-hidden p-6 transition duration-300 hover:-translate-y-1 hover:shadow-lift"
+                  data-on={on || undefined}
+                  className={`group card relative flex h-full flex-col overflow-hidden p-6 transition duration-500 ${
+                    on ? "-translate-y-1.5 shadow-lift ring-2 ring-violet-300" : ""
+                  }`}
                 >
-                  <span className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${t.bar}`} aria-hidden="true" />
+                  <span
+                    className={`absolute inset-x-0 top-0 bg-gradient-to-r transition-all duration-500 ${t.bar} ${on ? "h-1.5" : "h-1"}`}
+                    aria-hidden="true"
+                  />
                   <div className="flex items-start justify-between">
-                    <span className={`grid size-12 place-items-center rounded-2xl ${t.icon}`}>
+                    <span
+                      className={`grid size-12 place-items-center rounded-2xl transition-transform duration-500 ${t.icon} ${on ? "scale-110 -rotate-6" : ""}`}
+                    >
                       <Icon name={ex.icon} className="size-6" />
                     </span>
                     <ArrowUpRight
-                      className="size-5 text-muted transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-navy-900"
+                      className={`size-5 transition-all duration-300 ${on ? "translate-x-0.5 -translate-y-0.5 text-navy-900" : "text-muted"}`}
                       aria-hidden="true"
                     />
                   </div>

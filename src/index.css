@@ -132,6 +132,60 @@
   .pulse-dot {
     animation: pulse 2.4s ease-in-out infinite;
   }
+
+  /* ---- Sädemed ja elavus ---- */
+  .word-in {
+    animation: word-in 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  .twinkle {
+    animation: twinkle 3.6s ease-in-out infinite both;
+  }
+  .blob-a {
+    animation: drift-a 18s ease-in-out infinite;
+  }
+  .blob-b {
+    animation: drift-b 22s ease-in-out infinite;
+  }
+  .kanban-move {
+    width: calc((100% - 1rem) / 3 - 12px);
+    animation: kanban 7.5s cubic-bezier(0.6, 0, 0.3, 1) infinite;
+  }
+  .bar-grow {
+    animation: bar-grow 3.2s ease-in-out infinite;
+  }
+  .bulb-glow {
+    animation: bulb 2.8s ease-in-out infinite;
+  }
+  .tap-ring::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: 0 0 0 0 rgb(255 138 115 / 0.7);
+    animation: tap 2.6s ease-out infinite;
+  }
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / 0.55) 50%, transparent 70%);
+    transform: translateX(-120%);
+    animation: shimmer 4.5s ease-in-out infinite;
+  }
+  .hero-spotlight::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(420px circle at var(--mx, 70%) var(--my, 30%), rgb(255 194 61 / 0.1), transparent 60%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -147,6 +201,115 @@
   }
 }
 
+@keyframes word-in {
+  from {
+    opacity: 0;
+    transform: translateY(60%);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.4) rotate(0deg);
+  }
+  45%,
+  55% {
+    opacity: 1;
+    transform: scale(1) rotate(45deg);
+  }
+}
+@keyframes drift-a {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(60px, 40px);
+  }
+}
+@keyframes drift-b {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-50px, -30px);
+  }
+}
+@keyframes kanban {
+  0%,
+  22% {
+    left: 6px;
+    opacity: 1;
+  }
+  33%,
+  55% {
+    left: calc((100% - 1rem) / 3 + 0.5rem + 6px);
+    opacity: 1;
+  }
+  66%,
+  88% {
+    left: calc(((100% - 1rem) / 3 + 0.5rem) * 2 + 6px);
+    opacity: 1;
+  }
+  96% {
+    left: calc(((100% - 1rem) / 3 + 0.5rem) * 2 + 6px);
+    opacity: 0;
+  }
+  97% {
+    left: 6px;
+    opacity: 0;
+  }
+  100% {
+    left: 6px;
+    opacity: 1;
+  }
+}
+@keyframes bar-grow {
+  0%,
+  100% {
+    transform: scaleY(0.55);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+@keyframes bulb {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgb(255 255 255 / 0);
+    background-color: rgb(7 19 48 / 0.1);
+  }
+  50% {
+    box-shadow: 0 0 18px 4px rgb(255 255 255 / 0.85);
+    background-color: rgb(255 255 255 / 0.9);
+  }
+}
+@keyframes tap {
+  0% {
+    box-shadow: 0 0 0 0 rgb(255 138 115 / 0.7);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 10px rgb(255 138 115 / 0);
+  }
+}
+@keyframes shimmer {
+  0%,
+  60% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
 @keyframes float {
   0%,
   100% {

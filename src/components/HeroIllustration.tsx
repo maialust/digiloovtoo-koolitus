@@ -33,7 +33,7 @@ export function HeroIllustration() {
       {/* 1. Idee */}
       <div className="float-slow absolute top-[6%] left-[2%] w-[36%] rotate-[-4deg] rounded-2xl bg-sun-300 p-4 text-navy-950 shadow-lift">
         <div className="mb-3 flex items-center gap-2">
-          <span className="grid size-8 place-items-center rounded-lg bg-navy-950/10">
+          <span className="bulb-glow grid size-8 place-items-center rounded-lg bg-navy-950/10">
             <Lightbulb className="size-4" />
           </span>
           <span className="text-sm font-extrabold">Idee</span>
@@ -55,17 +55,19 @@ export function HeroIllustration() {
             <span className="size-5 rounded-full border-2 border-white bg-violet-400" />
           </span>
         </div>
-        <div className="grid grid-cols-3 gap-2">
+        <div className="relative grid grid-cols-3 gap-2">
           {[
             { t: "Teha", c: ["bg-coral-50 border-coral-300", "bg-coral-50 border-coral-300"] },
             { t: "Töös", c: ["bg-sun-50 border-sun-300", "bg-violet-50 border-violet-300"] },
             { t: "Valmis", c: ["bg-teal-50 border-teal-300"] },
           ].map((col) => (
             <div key={col.t} className="rounded-lg bg-navy-50 p-1.5">
-              <div className="mb-1.5 text-[0.62rem] font-bold text-muted">{col.t}</div>
+              <div className="mb-1.5 h-4 text-[0.62rem] leading-4 font-bold text-muted">{col.t}</div>
               <div className="space-y-1.5">
+                {/* vaba koht liikuvale kaardile */}
+                <div className="h-8 rounded-md border border-dashed border-navy-900/15" />
                 {col.c.map((cls, i) => (
-                  <div key={i} className={`rounded-md border-l-[3px] p-1.5 ${cls}`}>
+                  <div key={i} className={`h-8 rounded-md border-l-[3px] p-1.5 ${cls}`}>
                     <div className="h-1.5 w-full rounded bg-navy-900/15" />
                     <div className="mt-1 h-1.5 w-2/3 rounded bg-navy-900/15" />
                   </div>
@@ -73,6 +75,11 @@ export function HeroIllustration() {
               </div>
             </div>
           ))}
+          {/* liikuv ülesandekaart: teha → töös → valmis */}
+          <div className="kanban-move absolute top-[1.75rem] h-8 rounded-md border-l-[3px] border-violet-500 bg-white p-1.5 shadow-lift ring-1 ring-violet-300">
+            <div className="h-1.5 w-full rounded bg-violet-400/60" />
+            <div className="mt-1 h-1.5 w-1/2 rounded bg-violet-400/40" />
+          </div>
         </div>
       </div>
 
@@ -87,7 +94,7 @@ export function HeroIllustration() {
           <div className="h-1.5 w-full rounded bg-navy-900/15" />
           <div className="h-1.5 w-3/4 rounded bg-navy-900/15" />
         </div>
-        <div className="mt-2 h-4 rounded-full bg-coral-400" />
+        <div className="tap-ring relative mt-2 h-4 rounded-full bg-coral-400" />
       </div>
 
       {/* 4. Esitlus */}
@@ -102,8 +109,8 @@ export function HeroIllustration() {
           {[45, 70, 55, 90].map((h, i) => (
             <div
               key={i}
-              className="flex-1 rounded-t bg-gradient-to-t from-violet-500 to-teal-400"
-              style={{ height: `${h}%` }}
+              className="bar-grow flex-1 origin-bottom rounded-t bg-gradient-to-t from-violet-500 to-teal-400"
+              style={{ height: `${h}%`, animationDelay: `${i * 0.25}s` }}
             />
           ))}
         </div>

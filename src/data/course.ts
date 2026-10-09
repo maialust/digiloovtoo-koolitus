@@ -63,7 +63,8 @@ export const course = {
   // NB! Veebikohtumiste arv ja kestus on õppekavas kahel viisil kirjas,
   // seetõttu on lehel neutraalne sõnastus. Muuda ainult kinnitatud info põhjal.
   onlineNote: "Kontaktpäevade vahel toimuvad veebikohtumised ja konsultatsioonid Zoomis.",
-  datesNote: "Kontaktpäevade täpsed kuupäevad avaldatakse enne registreerimise algust.",
+  // Lisarida kuupäevade all. Tühjaks jäetuna ei kuvata.
+  datesNote: "",
   tools: {
     learning: "Google Classroom",
     meetings: "Zoom",
@@ -74,16 +75,29 @@ export const course = {
 /* ---------------------------------------------------------------------
  * ÕPPEGRUPID
  * Lisa täpsed kuupäevad alles siis, kui need on kinnitatud.
- * `note` on valikuline lisarida (nt "Registreerimine on avatud").
+ * `note`  on valikuline lisarida (nt "Registreerimine on avatud").
+ * `dates` on valikuline kuupäevade loend kujul "PP.KK.AAAA".
+ *         Nädalapäev arvutatakse lehel automaatselt.
  * Kui mõni grupp on juba toimunud, kustuta see plokk või muuda `note`.
  * ------------------------------------------------------------------- */
-export type Group = { label: string; period: string; note?: string };
+export type Group = { label: string; period: string; note?: string; dates?: string[] };
 
 export const groups: Group[] = [
   {
     label: "Järgmine grupp",
-    period: "jaanuar 2027",
-    note: "Algus jaanuari keskel, täpsed kuupäevad on täpsustamisel.",
+    period: "05.12.2026 – 07.03.2027",
+    note: "Üheksa kokkusaamist.",
+    dates: [
+      "05.12.2026",
+      "19.12.2026",
+      "09.01.2027",
+      "23.01.2027",
+      "30.01.2027",
+      "06.02.2027",
+      "13.02.2027",
+      "27.02.2027",
+      "07.03.2027",
+    ],
   },
 ];
 
@@ -490,8 +504,8 @@ export const faq: { q: string; a: string }[] = [
     a: "Koolituse edukalt lõpetanud osaleja saab Tallinna Ülikooli täiendusõppe tunnistuse.",
   },
   {
-    q: "Millal järgmised grupid alustavad?",
-    a: "Järgmine grupp alustab 2027. aasta jaanuari keskel, täpsed kuupäevad on täpsustamisel. Kontaktpäevade kuupäevad avaldatakse enne registreerimise algust.",
+    q: "Millal järgmine grupp alustab?",
+    a: "Järgmine grupp alustab 05.12.2026 ja lõpetab 07.03.2027. Kokkusaamised toimuvad 05.12 ja 19.12.2026 ning 09.01, 23.01, 30.01, 06.02, 13.02, 27.02 ja 07.03.2027.",
   },
 ];
 

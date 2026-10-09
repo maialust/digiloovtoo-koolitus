@@ -3,6 +3,15 @@ import { course, groups } from "../data/course";
 import { SectionHeading } from "./SectionHeading";
 import { RegisterButton } from "./Buttons";
 
+const WEEKDAYS = ["pühapäev", "esmaspäev", "teisipäev", "kolmapäev", "neljapäev", "reede", "laupäev"];
+
+/** "05.12.2026" → "laupäev" */
+function weekday(date: string) {
+  const [d, m, y] = date.split(".").map(Number);
+  const day = new Date(y, m - 1, d).getDay();
+  return Number.isNaN(day) ? "" : WEEKDAYS[day];
+}
+
 export function Format() {
   const { total, contact, independent } = course.volume;
   const contactPct = Math.round((contact / total) * 100);
@@ -83,10 +92,23 @@ export function Format() {
                   <p className="text-xs font-bold tracking-wider text-sun-300 uppercase">{g.label}</p>
                   <p className="mt-1 text-lg font-extrabold">{g.period}</p>
                   {g.note && <p className="mt-1 text-sm text-navy-100">{g.note}</p>}
+                  {g.dates && g.dates.length > 0 && (
+                    <ol className="mt-4 grid grid-cols-1 gap-x-4 gap-y-1.5 text-sm sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                      {g.dates.map((d, i) => (
+                        <li key={d} className="flex items-baseline gap-2">
+                          <span className="w-4 text-right text-xs font-bold text-sun-300 tabular-nums" aria-hidden="true">
+                            {i + 1}.
+                          </span>
+                          <span className="font-bold tabular-nums">{d}</span>
+                          <span className="text-navy-100">{weekday(d)}</span>
+                        </li>
+                      ))}
+                    </ol>
+                  )}
                 </li>
               ))}
             </ul>
-            <p className="relative mt-4 text-sm leading-relaxed text-navy-100">{course.datesNote}</p>
+            {course.datesNote && <p className="relative mt-4 text-sm leading-relaxed text-navy-100">{course.datesNote}</p>}
             <div className="relative mt-auto pt-6">
               <RegisterButton className="w-full" />
             </div>

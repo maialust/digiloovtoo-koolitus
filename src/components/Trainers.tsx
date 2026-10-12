@@ -47,18 +47,32 @@ export function Trainers() {
                 <h3 className="text-2xl font-extrabold tracking-tight text-navy-900">{t.name}</h3>
                 {t.role && <p className="mt-1 leading-snug font-semibold text-teal-700">{t.role}</p>}
                 {t.bio && <p className="mt-3 leading-relaxed text-muted">{t.bio}</p>}
-                {t.profile && (
-                  <a
-                    href={t.profile}
-                    target="_blank"
-                    rel="noopener"
-                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-violet-700 underline-offset-4 hover:text-navy-900 hover:underline"
-                  >
-                    ETIS-e profiil
-                    <ArrowUpRight className="size-4" aria-hidden="true" />
-                    <span className="sr-only"> — {t.name} (avaneb uues aknas)</span>
-                  </a>
-                )}
+                <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+                  {t.profile && (
+                    <a
+                      href={t.profile}
+                      target="_blank"
+                      rel="noopener"
+                      className="inline-flex items-center gap-1.5 text-sm font-bold text-violet-700 underline-offset-4 hover:text-navy-900 hover:underline"
+                    >
+                      ETIS-e profiil
+                      <ArrowUpRight className="size-4" aria-hidden="true" />
+                      <span className="sr-only"> — {t.name} (avaneb uues aknas)</span>
+                    </a>
+                  )}
+                  {t.portfolio && (
+                    <a
+                      href={t.portfolio}
+                      target="_blank"
+                      rel="noopener"
+                      className="inline-flex items-center gap-1.5 text-sm font-bold text-violet-700 underline-offset-4 hover:text-navy-900 hover:underline"
+                    >
+                      Meisterõpetaja portfoolio
+                      <ArrowUpRight className="size-4" aria-hidden="true" />
+                      <span className="sr-only"> — {t.name} (avaneb uues aknas)</span>
+                    </a>
+                  )}
+                </div>
               </div>
             </li>
           ))}

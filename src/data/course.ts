@@ -108,9 +108,10 @@ export const groups: Group[] = [
  * `photo`   — pildifaili nimi kaustas public/, nt "maia-lust.jpg".
  *             Tühjaks jäetuna kuvatakse neutraalne ikoon.
  * `profile` — link ETIS-e profiilile. Tühjaks jäetuna ei kuvata.
+ * `portfolio` — link meisterõpetaja portfooliole (valikuline).
  * Allikas: ETIS (www.etis.ee), vaadatud 26.09.2026.
  * ------------------------------------------------------------------- */
-export type Trainer = { name: string; role: string; bio: string; photo: string; profile: string };
+export type Trainer = { name: string; role: string; bio: string; photo: string; profile: string; portfolio?: string };
 
 export const trainers: Trainer[] = [
   {
@@ -119,6 +120,7 @@ export const trainers: Trainer[] = [
     bio: "Uurib digitaalset kirjaoskust ja tehnoloogia kasutamist hariduses, sealhulgas digiloovtööde platvormi ja õpilaste toetamist arvutirikastatud õpikeskkonnas. Digiõpiku „Digiloovtöö“ autor.",
     photo: "Maia pilt.png",
     profile: "https://www.etis.ee/CV/Maia_Lust/est",
+    portfolio: "https://sites.google.com/pae.tln.edu.ee/mlmeister/",
   },
   {
     name: "Mart Laanpere",
